@@ -37,4 +37,11 @@ public class CustomerDAO {
 				.doOnNext(i -> System.out.println("Processing count(Flux): " + i))
 				.map(i -> new Customer(i, "Customer " + i));
 	}
+	
+	// Using this method for Functional end-point implementation
+	public Flux<Customer> getCustomersForRouter(){
+		return Flux.range(1, 10)
+				.doOnNext(i -> System.out.println("Processing count(Flux Router): " + i))
+				.map(i -> new Customer(i, "Customer " + i));
+	}
 }
