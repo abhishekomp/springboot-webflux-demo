@@ -24,10 +24,12 @@ public class CustomerController {
 	
 	@GetMapping("/")
 	public List<Customer> getCustomers() {
-		return customerService.loadAllCustomers();
+		return customerService.loadAllCustomers();	//traditional rest end-point
 	}
 	
+	//http://localhost:9191/customers/stream
 	@GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	//@GetMapping(value = "/stream")
 	public Flux<Customer> getCustomersUsingFlux() {
 		return customerService.loadAllCustomersStream();
 	}

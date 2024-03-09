@@ -22,6 +22,7 @@ public class CustomerHandler {
 	}
 	
 	public Mono<ServerResponse> findCustomer(ServerRequest request){
+		//Get the path variable
 		int customerId = Integer.valueOf(request.pathVariable("input"));
 //		customerDAO.getCustomersForRouter()
 //			.filter(c -> c.getId() == customerId)
@@ -35,7 +36,7 @@ public class CustomerHandler {
 	
 	public Mono<ServerResponse> saveCustomer(ServerRequest request){
 		Mono<Customer> customerMono = request.bodyToMono(Customer.class);
-		Mono<String> stringMono = customerMono.map(dto -> dto.getId() + " " + dto.getName());
+		Mono<String> stringMono = customerMono.map(dto -> dto.getId() + ":" + dto.getName());
 		return ServerResponse.ok().body(stringMono, String.class);
 	}
 }

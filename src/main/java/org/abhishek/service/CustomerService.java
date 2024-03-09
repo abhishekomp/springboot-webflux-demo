@@ -15,6 +15,7 @@ public class CustomerService {
 	@Autowired
 	private CustomerDAO customerDAO;
 	
+	//traditional rest end-point pattern
 	public List<Customer> loadAllCustomers() {
 		long start = System.currentTimeMillis();
 		List<Customer> customers = customerDAO.getCustomers();
@@ -23,6 +24,7 @@ public class CustomerService {
 		return customers;
 	}
 	
+	//Reactive way rest end-point pattern
 	public Flux<Customer> loadAllCustomersStream() {
 		long start = System.currentTimeMillis();
 		Flux<Customer> customers = customerDAO.getCustomersAsFlux();

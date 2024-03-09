@@ -23,6 +23,7 @@ public class CustomerDAO {
 		}
 	}
 	
+	// this is the traditional Rest API approach
 	public List<Customer> getCustomers(){
 		return IntStream.rangeClosed(1, 10)
 				.peek(CustomerDAO::sleepExecution)
@@ -38,7 +39,7 @@ public class CustomerDAO {
 				.map(i -> new Customer(i, "Customer " + i));
 	}
 	
-	// Using this method for Functional end-point implementation
+	// Using this method for Functional end-point implementation (Router and Handler implementation)
 	public Flux<Customer> getCustomersForRouter(){
 		return Flux.range(1, 10)
 				.doOnNext(i -> System.out.println("Processing count(Flux Router): " + i))
